@@ -6,6 +6,7 @@ fps = 0
 video = cv2.VideoCapture(0)
 ret, prevFrame = video.read()
 switch = False
+result = []
 
 while True:
     
@@ -14,22 +15,18 @@ while True:
     if cv2.waitKey(1)  & 0xFF == ord('q'):
         break
 
-    if cv2.waitKey(1)  & 0xFF == ord('a'):
-        switch = not switch
 
-    if switch:
-        movement = cv2.absdiff(currFrame, prevFrame)
+    movement = cv2.absdiff(currFrame, prevFrame)
         
-        prevFrame = currFrame
-        gray = cv2.cvtColor(currFrame, cv2.COLOR_BGR2GRAY)
+    prevFrame = currFrame
+    gray = cv2.cvtColor(currFrame, cv2.COLOR_BGR2GRAY)
 
-        brightness = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    brightness = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 
-        lightDetection = cv2.bitwise_and(movement, brightness)
+    lightDetection = cv2.bitwise_and(movement, brightness)
 
-        cv2.imshow('frame', lightDetection)
-    else:
-        cv2.imshow('frame', currFrame)
+    cv2.imshow('frame', result)
+    cv2.imshow('frame', currFrame)
 
 
 
