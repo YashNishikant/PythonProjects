@@ -22,10 +22,9 @@ while True:
     gray = cv2.cvtColor(currFrame, cv2.COLOR_BGR2GRAY)
 
     brightness = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
-
+    
     lightDetection = cv2.bitwise_and(movement, brightness)
 
-    cv2.imshow('frame', result)
     cv2.imshow('frame', currFrame)
 
 
