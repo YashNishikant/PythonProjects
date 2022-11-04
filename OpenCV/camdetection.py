@@ -2,11 +2,8 @@ import cv2
 import numpy as np
 
 time_2 = 0
-fps = 0
 video = cv2.VideoCapture(0)
 ret, prevFrame = video.read()
-switch = False
-result = []
 
 while True:
     
@@ -22,10 +19,8 @@ while True:
     gray = cv2.cvtColor(currFrame, cv2.COLOR_BGR2GRAY)
 
     brightness = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
-    
-    lightDetection = cv2.bitwise_and(movement, brightness)
 
-    cv2.imshow('frame', currFrame)
+    cv2.imshow('frame', movement)
 
 
 
