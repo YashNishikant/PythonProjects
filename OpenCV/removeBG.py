@@ -3,12 +3,14 @@ import numpy as np;
 from PIL import Image;
 
 def whiteRange(dataint, acceptedval):
-    if(acceptedval + 20 >= dataint >= acceptedval - 20):
+    precision = 80
+    midvalue = acceptedval - precision
+    if(midvalue + precision >= dataint >= midvalue - precision):
         return True
     return False
 
 def checkBG(data):
-    if(whiteRange(data[0],235) and whiteRange(data[1],235) and whiteRange(data[2],235)):
+    if(whiteRange(data[0],255) and whiteRange(data[1],255) and whiteRange(data[2],255)):
         return True
     return False
 
