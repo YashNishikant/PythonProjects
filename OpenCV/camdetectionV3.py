@@ -2,27 +2,39 @@ import cv2
 import numpy as np
 
 video = cv2.VideoCapture(1)
-ret, prevFrame = video.read()
-ret, currFrame = video.read()
+prevFrame = video.read()[1]
+currFrame = video.read()[1]
+
+run = False
+
+diff = None
+
+def drawContours():
+    contours = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[0]
+    if contours:
+        largestcontour = max(contours, key=cv2.contourArea)
+        x,y,w,h = cv2.boundingRect(largestcontour)
+        cv2.rectangle(currFrame, (x,y), (x+w, y+h), (0,255,0), 3)   
 
 while video.isOpened():
-    ret, currFrame = video.read()
+    currFrame = video.read()[1]
+    norm = video.read()[1]
 
-    diff = cv2.absdiff(currFrame, prevFrame)
-    diffresult = cv2.multiply(diff, 10)
-
-    grayscale = cv2.cvtColor(diffresult, cv2.COLOR_BGR2GRAY)
+    grayscale = cv2.cvtColor(currFrame, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(grayscale, (5,5), cv2.BORDER_DEFAULT)
-    ret, thresh = cv2.threshold(blur, 100, 255, cv2.THRESH_BINARY)
+    thresh = cv2.threshold(blur, 253, 255, cv2.THRESH_BINARY)[1]
 
-    contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    if run:
+        diff = cv2.absdiff(thresh, prevFrame)
+        cv2.imshow('output', currFrame)
 
-    cv2.imshow('output', diff)
+    drawContours()
+
+    prevFrame = cv2.threshold(blur, 253, 255, cv2.THRESH_BINARY)[1]
 
     if cv2.waitKey(1)  & 0xFF == ord('q'):
         break
 
-    prevFrame = currFrame
-    ret, prevFrame = video.read()
+    run = True
 
 video.release()
