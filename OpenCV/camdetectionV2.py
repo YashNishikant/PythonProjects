@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-video = cv2.VideoCapture(1)
+video = cv2.VideoCapture(0)
 ret, prevFrame = video.read()
 ret, currFrame = video.read()
 
