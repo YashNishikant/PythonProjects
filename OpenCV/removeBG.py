@@ -2,10 +2,17 @@ import cv2;
 import numpy as np;
 from PIL import Image;
 
+#precision can be changed here (0-1)
+precision = 1
+
 def whiteRange(dataint, acceptedval):
-    precision = 80
-    midvalue = acceptedval - precision
-    if(midvalue + precision >= dataint >= midvalue - precision):
+    precisionscaled = precision*80
+
+    if precisionscaled > 80:
+        precisionscaled = 80
+
+    midvalue = acceptedval - precisionscaled
+    if(midvalue + precisionscaled >= dataint >= midvalue - precisionscaled):
         return True
     return False
 
@@ -14,7 +21,7 @@ def checkBG(data):
         return True
     return False
 
-originalrgba = Image.open(r"C:\Users\yash0\prayge.jpg")
+originalrgba = Image.open(r"C:\Users\yash0\sign.jpg")
 rgba = originalrgba.convert("RGBA")
 imagedata = rgba.getdata()
 newdata = []

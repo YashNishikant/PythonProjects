@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-
 time_2 = 0
 video = cv2.VideoCapture(0)
 ret, prevFrame = video.read()
@@ -30,11 +29,3 @@ while True:
 
     cv2.bitwise_and(movementthresh, brightness, overlap_image)
     cv2.imshow('frame', overlap_image)
-
-
-
-#one image is brightness and one image is movement  
-#convert images to binary
-#bitwise and
-#find overlap
-#np.unoit8
