@@ -3,7 +3,7 @@ import numpy as np;
 from PIL import Image;
 
 #precision can be changed here (0-1)
-precision = 1
+precision = 0.1
 
 def whiteRange(dataint, acceptedval):
     precisionscaled = precision*80
@@ -21,7 +21,7 @@ def checkBG(data):
         return True
     return False
 
-originalrgba = Image.open(r"C:\Users\yash0\sign.jpg")
+originalrgba = Image.open(r"C:\Users\yash0\prayge.jpg")
 rgba = originalrgba.convert("RGBA")
 imagedata = rgba.getdata()
 newdata = []
@@ -36,3 +36,4 @@ rgba.putdata(newdata)
 
 originalrgba.show()
 rgba.show()
+cv2.imwrite("C:\github\pgNObg.jpg", rgba)

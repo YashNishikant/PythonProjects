@@ -4,7 +4,7 @@ import math
 import pyautogui as pg
 import time
 
-video = cv2.VideoCapture(0)
+video = cv2.VideoCapture(1)
 prevFrame = video.read()[1]
 currFrame = video.read()[1]
 
@@ -34,7 +34,6 @@ while video.isOpened():
     timepassed = timepassed + (t1-t2)
 
     currFrame = video.read()[1]
-    norm = video.read()[1]
 
     box_x = x
 
@@ -96,6 +95,9 @@ while video.isOpened():
 
         #if the horizontal displacement is over 200 pixels, use a python automated library to open up my github on chrome
         #there is also a cooldown i added so the code doesn't fire off when unintended
+        print(deltaX)
+        print(cooldown)
+        print(enableauto)
         if(deltaX > 200 and not cooldown and enableauto):
             pg.moveTo(163,1066)
             pg.leftClick()
@@ -123,7 +125,7 @@ while video.isOpened():
     
     #setting contours list of previous frame.
     #we are comparing the contour list between frames to avoid this bug:
-        #whenever i firstturned on a flashlight on the side of the screen with large x values, the code registed the action as a quick sweep. 
+        #whenever i first turned on a flashlight on the side of the screen with large x values, the code registed the action as a quick sweep. 
         #as a result, the pyautogui code would run when it wasn't supposed to
         #so im making sure of this: 
         #when the pyautogui code runs, there must have been a contour detected in the frame previous, 
