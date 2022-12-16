@@ -10,7 +10,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 mp_draw = mp.solutions.drawing_utils
 
-togglehands = False
+togglehands = True
 
 def showHands():
     if results.multi_hand_landmarks:

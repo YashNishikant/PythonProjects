@@ -3,7 +3,7 @@ import numpy as np;
 from PIL import Image;
 
 #precision can be changed here (0-1)
-precision = 0.1
+precision = 1
 
 def whiteRange(dataint, acceptedval):
     precisionscaled = precision*80
