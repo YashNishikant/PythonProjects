@@ -41,13 +41,13 @@ def showHands():
         edgepoints = [list[4],list[8],list[12],list[16],list[20]]
 
         for i in edgepoints:
-            if(distance(i, findPalm(list[0], list[9])) > 60):
+            if(distance(i, findPalm(list[0], list[9])) > 80):
                 count = count + 1
 
     if(len(list) > 20):
         list.clear()
 
-    cv2.putText(currFrame, str(count), (50,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 3, cv2.LINE_AA)
+    cv2.putText(currFrame, str(count), (50,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 3, cv2.LINE_AA)
 
 while video.isOpened():
     ret, currFrame = video.read()
