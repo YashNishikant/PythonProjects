@@ -26,30 +26,37 @@ def findPalm(postop, posbottom):
 
 def showHands():
     count = 0
-    if results.multi_hand_landmarks:
+    if results.multi_hand_landmarks:                                                        #This loop of code simply constructs the hand that the mediapipe library will recognize.
         for hand_landmarks in results.multi_hand_landmarks:
             for  lm in hand_landmarks.landmark:
                 height, width, channel = currFrame.shape
                 cx, cy = int(lm.x * width), int(lm.y * height)
-                #cv2.circle(currFrame, (cx, cy), 10, (255, 0, 255), cv2.FILLED)
                 
-                list.append(tuple([cx, cy]))
+                list.append(tuple([cx, cy]))                                                #This line of code will add all of the joints' x and y coordiantes to a list. 
+                                                                                            #Each index number of the list will be the joint number of the corresponding joint 
+                                                                                            #shown in the image on the last slide. 
 
-            #mp_draw.draw_landmarks(currFrame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            mp_draw.draw_landmarks(currFrame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
     if(len(list) >= 20):
-        edgepoints = [list[4],list[8],list[12],list[16],list[20]]
+        edgepoints = [list[4],list[8],list[12],list[16],list[20]]                           #i will be looping through all of the finger tip positions
 
         for i in edgepoints:
-            if(distance(i, findPalm(list[0], list[9])) > 80):
+
+            threshold = distance(findPalm(list[0], list[9]), list[9]) * 1.5                 #finding the threshold (solution to the constant problem)
+
+            if(distance(i, findPalm(list[0], list[9])) > threshold):                        #if the distance of a particular hand tip is above the threshold, add 1 to a "count" 
+                                                                                            #variable. The maximum this can ever be is 5.
                 count = count + 1
 
-    if(len(list) > 20):
+    if(len(list) > 20):                                                                     #i want to reset the list of hand joints every frame, since they change all the time
         list.clear()
 
-    cv2.putText(currFrame, str(count), (50,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 3, cv2.LINE_AA)
+    cv2.rectangle(currFrame, (25,50), (100, 150), (255, 255, 255), -1)                      #display stuff
+    cv2.putText(currFrame, str(count), (50,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 3, cv2.LINE_AA)
 
-while video.isOpened():
+
+while video.isOpened():                                                                     #the following code simply runs the code we talked about
     ret, currFrame = video.read()
 
     imgRGB = cv2.cvtColor(currFrame, cv2.COLOR_BGR2RGB)
@@ -57,6 +64,10 @@ while video.isOpened():
 
     showHands()
 
+    s = 2
+
+    cv2.namedWindow("output", cv2.WINDOW_AUTOSIZE)
+    #cv2.resizeWindow("output", 640*s, 480*s)
     cv2.imshow('output', currFrame)
 
     if cv2.waitKey(1)  & 0xFF == ord('q'):

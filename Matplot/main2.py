@@ -4,7 +4,6 @@ import csv
 xpoints = []
 ypoints = []
 
-
 with open('CSVExample.csv', 'r') as csv_file:
     reader = csv.reader(csv_file)
     for line in reader:
@@ -13,6 +12,3 @@ with open('CSVExample.csv', 'r') as csv_file:
 
 plt.plot(xpoints, ypoints)
 plt.show()
-
-
-# Plot points at (4,3), (2,8) and (6,7)
