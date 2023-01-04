@@ -36,7 +36,7 @@ def showHands():
                                                                                             #Each index number of the list will be the joint number of the corresponding joint 
                                                                                             #shown in the image on the last slide. 
 
-            mp_draw.draw_landmarks(currFrame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            #mp_draw.draw_landmarks(currFrame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
     if(len(list) >= 20):
         edgepoints = [list[4],list[8],list[12],list[16],list[20]]                           #i will be looping through all of the finger tip positions
@@ -66,8 +66,8 @@ while video.isOpened():                                                         
 
     s = 2
 
-    cv2.namedWindow("output", cv2.WINDOW_AUTOSIZE)
-    #cv2.resizeWindow("output", 640*s, 480*s)
+    cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+    cv2.resizeWindow("output", 640*s, 480*s)
     cv2.imshow('output', currFrame)
 
     if cv2.waitKey(1)  & 0xFF == ord('q'):

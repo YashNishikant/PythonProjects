@@ -9,6 +9,7 @@ def scatterPlot():
     life_expectancy = [73.7, 64.3, 81.3, 78.8, 63.0, 66.4, 75.2, 73.7]
     population = np.array([214, 28, 51, 331, 117, 225, 1412, 1])
 
+    # Figure is our window and graph. (The figure of whats in our window)
     fig = plt.figure()
     ax = fig.add_subplot(111)  # just alignment. 111 is the center
     # ex. 221 is the top left.
