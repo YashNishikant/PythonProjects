@@ -22,7 +22,7 @@ def findPalm(postop, posbottom):
     xt, yt = postop
     xb, yb = posbottom
 
-    return tuple([xb, ((yt+yb)/2)])
+    return tuple([((xt+xb)/2), ((yt+yb)/2)])
 
 def showHands():
     count = 0
@@ -33,8 +33,8 @@ def showHands():
                 cx, cy = int(lm.x * width), int(lm.y * height)
                 
                 list.append(tuple([cx, cy]))                                                #This line of code will add all of the joints' x and y coordiantes to a list. 
-                                                                                            #Each index number of the list will be the joint number of the corresponding joint 
-                                                                                            #shown in the image on the last slide. 
+                                                                                            #Each index number of the list will correspond to the the joint number 
+                                                                                            #shown in the image on the slides. 
 
             #mp_draw.draw_landmarks(currFrame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
@@ -44,7 +44,7 @@ def showHands():
         for i in edgepoints:
 
             threshold = distance(findPalm(list[0], list[9]), list[9]) * 1.5                 #finding the threshold (solution to the constant problem)
-
+            #cv2.circle(currFrame, (int(x),int(y)), 5,(255, 255, 255), 2)
             if(distance(i, findPalm(list[0], list[9])) > threshold):                        #if the distance of a particular hand tip is above the threshold, add 1 to a "count" 
                                                                                             #variable. The maximum this can ever be is 5.
                 count = count + 1

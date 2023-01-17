@@ -15,7 +15,7 @@ def sendEmail(reciever, name):
     email = EmailMessage()
     email['From'] = 'csclub@sbschools.org'
     email['To'] = reciever
-    email['Subject'] = 'Sponsorship for HackSB'
+    email['Subject'] = 'test'
     # setting specifics for the email
     # who its from
     # the recipient
@@ -33,7 +33,7 @@ def sendEmail(reciever, name):
     # server finally sends email
 
 
-with open('[CSV_NAME].csv', 'r') as csv_file:
+with open('testing.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
 
     for line in csv_reader:
