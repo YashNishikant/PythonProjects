@@ -21,7 +21,6 @@ def distance(pos1,pos2):
 def findPalm(postop, posbottom):
     xt, yt = postop
     xb, yb = posbottom
-
     return tuple([((xt+xb)/2), ((yt+yb)/2)])
 
 def showHands():
