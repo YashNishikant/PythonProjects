@@ -3,9 +3,6 @@ import numpy as np
 
 video = cv2.VideoCapture(r'C:\github\PythonProjects\OpenCV\roadvid.mp4')
 
-linesleft = []
-linesright = []
-
 delay = 30
 l = 0
 r = 0
@@ -64,6 +61,9 @@ while video.isOpened():
     if(len(lines) > 0): 
         xPos1=0
         xPos2=0
+
+        #y − y1 = m(x − x1)
+
         if(l != 0):
             xPos1 = int((600-y_intL)/slLeft)
             cv2.line(vid, (0,int(y_intL)), (xPos1, 600), (0,0,0), 5)

@@ -6,14 +6,14 @@ def sendEmail(reciever, name):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login('csclub@sbschools.org', '?21robles')
+    server.login('10016796@sbstudents.org', 'Nest09!#')
     # creating the server that can trust u, and having
     # it log into whatever google account there is a certain
     # security setting that MUST be turned off before you
     # use this, or this code  will not work
 
     email = EmailMessage()
-    email['From'] = 'csclub@sbschools.org'
+    email['From'] = '10016796@sbschools.org'
     email['To'] = reciever
     email['Subject'] = 'test'
     # setting specifics for the email
@@ -22,7 +22,7 @@ def sendEmail(reciever, name):
     # the subject
     # i think u can also cc and bcc
 
-    email.set_content('message')
+    email.set_content(name + " - TEST")
     # the name parameter in this function is to address
     # the company name in each automated email, assuming
     # column 0 contains all company names and column 1
