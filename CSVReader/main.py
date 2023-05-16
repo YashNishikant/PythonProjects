@@ -1,13 +1,19 @@
 import csv
 
-with open('a1.csv', 'r') as csv_file:
+names1 = []
+names2 = []
+
+with open('Y2YAttendance.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
-
-    counter = 0
-
     for line in csv_reader:
-        if float(line[1]) >= 5.0:
-            print(line[0] + "\t\t" + line[1])
-            counter = counter + 1
+        names1.append(line[0] + " " + line[1])
 
-print(counter)
+with open('PTPY2Y.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    for line in csv_reader:
+        names2.append(line[1] + " " + line[0])
+
+for a in names1:
+    for b in names2:
+        if a.__eq__(b):
+            print(a)

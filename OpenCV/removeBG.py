@@ -21,7 +21,7 @@ def checkBG(data):
         return True
     return False
 
-originalrgba = Image.open(r"C:\Users\yash0\prayge.jpg")
+originalrgba = Image.open(r"C:\Users\yash0\particleLogo.jpg")
 rgba = originalrgba.convert("RGBA")
 imagedata = rgba.getdata()
 newdata = []
@@ -36,4 +36,4 @@ rgba.putdata(newdata)
 
 originalrgba.show()
 rgba.show()
-cv2.imwrite("C:\github\pgNObg.jpg", rgba)
+cv2.imwrite("C:\github\particleNoBG.jpg", rgba)
